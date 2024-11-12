@@ -188,6 +188,13 @@ body {
 
     
 }
+.plant_category-title{
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
 /* Add Media Query for responsiveness */
 @media (max-width: 768px) {
     .product-card {

@@ -9,28 +9,37 @@ const CartItem = ({ onContinueShopping }) => {
 
   // Calculate total amount for all products in the cart
   const calculateTotalAmount = () => {
- 
+    console.log(cart);
+    return cart.reduce((total, item)=> total + Number(item.cost.substr(1)) * item.quantity,0)
   };
 
   const handleContinueShopping = (e) => {
-   
+   onContinueShopping(e)
   };
 
 
 
   const handleIncrement = (item) => {
+    console.log('item:', item);
+    dispatch(updateQuantity({name: item.name, quantity: item.quantity + 1}))
   };
 
   const handleDecrement = (item) => {
-   
+    dispatch(updateQuantity({name: item.name, quantity: item.quantity - 1}))
   };
 
   const handleRemove = (item) => {
+    dispatch(removeItem(item))
   };
 
   // Calculate total cost based on quantity for an item
   const calculateTotalCost = (item) => {
+    return Number(item.cost.substr(1)) * item.quantity
   };
+
+  const handleCheckOut = () =>{
+    window.alert("Coming Soon...");
+  }
 
   return (
     <div className="cart-container">
@@ -57,7 +66,7 @@ const CartItem = ({ onContinueShopping }) => {
       <div className="continue_shopping_btn">
         <button className="get-started-button" onClick={(e) => handleContinueShopping(e)}>Continue Shopping</button>
         <br />
-        <button className="get-started-button1">Checkout</button>
+        <button className="get-started-button1" onClick={handleCheckOut}>Checkout</button>
       </div>
     </div>
   );
